@@ -1,0 +1,8 @@
+<div ngbDropdown class="d-inline-block">
+    <button mat-button class="btn border-0 text-primary" id="dropdownBasic1" ngbDropdownToggle><small>{{ currentLanguage }}</small></button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <ng-container *ngFor="let lang of languages">
+            <button class="rounded-0 text-start btn" mat-button [class.active]="lang == currentLanguage" (click)="onSelectLanguage(lang)" ngbDropdownItem> <small>{{ lang }}</small> </button>
+        </ng-container>        
+    </div>
+</div>

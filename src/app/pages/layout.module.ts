@@ -4,6 +4,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { FooterComponent } from './layout/components/footer/footer.component';
 import { PagesRoutingModule } from './pages-routing.module';
+import { SharedModule } from '../shared/shared.module';
+import { UserCardComponent } from './layout/components/header/components/user-card/user-card.component';
+import { SelectLanguageComponent } from './layout/components/header/components/select-language/select-language.component';
 
 
 
@@ -11,10 +14,13 @@ import { PagesRoutingModule } from './pages-routing.module';
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UserCardComponent,
+    SelectLanguageComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     PagesRoutingModule
   ]
 })

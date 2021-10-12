@@ -1,1 +1,33 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">
+          <img width="190" src="assets/images/layout/logo.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- begin:: global search component  -->
+        <app-global-search-form class="ms-3"></app-global-search-form>
+        <!-- end:: global search component  -->
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            <!-- begin:: select language component  -->
+            <li class="nav-item dropdown">
+                <app-select-language></app-select-language>
+            </li>
+            <!-- end:: select language component  -->
+
+            <!-- begin:: user card component  -->
+            <li class="ms-lg-3 pe-2">
+                <app-user-card></app-user-card>
+            </li>
+            <!-- end:: user card component  -->
+
+        </ul>
+
+      </div>
+    </div>
+</nav>

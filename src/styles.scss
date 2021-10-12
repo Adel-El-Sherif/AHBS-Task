@@ -43,4 +43,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --primary-color: #1257a8;
   --main-rounded: 5px;  
   --body-bg: #eff7ff;
+  --input-bg: #e8f0f7;
 }
+
+* {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+// begin:: global style 
+.form-control {
+  border-radius: var(--main-rounded);
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.rounded-0 {
+  border-radius: 0;
+}
+// end:: global style 

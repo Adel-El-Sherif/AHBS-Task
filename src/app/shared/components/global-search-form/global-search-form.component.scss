@@ -1,0 +1,33 @@
+.form {
+    // Structure Block 
+    min-width: 475px;
+
+
+    &-control {
+
+        // Structure Block 
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-color: var(--input-bg);
+        background-color: var(--input-bg);
+        border-right-color: var(--primary-color);
+        
+        // Positing Block
+        z-index: 3;
+        position: relative;
+
+        // Typography Block 
+        font-size: .85rem;
+
+    }
+
+    .btn {
+        // Structure Block 
+        margin-left: 0 !important;
+        background-color: var(--input-bg);
+
+        mat-icon {
+            color: var(--primary-color);
+        }
+    }
+}
