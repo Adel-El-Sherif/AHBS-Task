@@ -1,0 +1,66 @@
+.toolbar {
+    // Positioning Block
+    z-index: 2;
+    position: relative;
+}
+
+.overlay {
+    // Positioning Block
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    position: fixed;
+    // Structure Block 
+    background-color: rgba(0, 0, 0,.5);
+    &.show {
+       z-index: 1;
+    }
+ 
+}
+
+.toolbar {
+    &__navbar {
+        // Positioning Block
+        left: 0;
+        right: 0;
+        position: absolute;
+        margin: 0 12px;
+
+        // Structure Block 
+        display: none;
+
+        // Modifier Block
+        transform: translateY(-8px);
+
+
+        &--show {
+            // Modifier Block
+            animation: fadeInFromNone 0.5s ease-out;
+            display: block;
+            transform: none;
+        }
+    }
+}
+
+/* begin:: animations _____________________________ */
+@keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+        display: none;
+        transform: translateY(-8px);
+    }
+    1% {
+        opacity: 0;
+        display: block;
+        // transform: none;
+    }
+    100% {
+        opacity: 1;
+        display: block;
+        transform: none;
+
+    }
+}
+/* end:: animations _____________________________ */

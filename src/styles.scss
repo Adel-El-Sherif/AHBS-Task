@@ -41,6 +41,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
   --primary-color: #1257a8;
+  --secondary-color: #eff7ff;
   --main-rounded: 5px;  
   --body-bg: #eff7ff;
   --input-bg: #e8f0f7;
@@ -54,6 +55,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // begin:: global style 
 .form-control {
   border-radius: var(--main-rounded);
+}
+
+a {
+  // Typography Block 
+  color: inherit;
+  text-decoration: none;
+
+
+  // Modifier Block 
+  transition: all 3s ease-in-out;
+
+  &:hover {
+    // Typography Block 
+    color: var(--primary-color);
+
+    // Modifier Block 
+    transition: all 3s ease-in-out;
+
+  }
 }
 // end:: global style 
 
@@ -72,13 +92,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .main-rounded {
   border-radius: var(--main-rounded);  
 }
-// begin:: border utilities 
+// end:: border utilities 
 
 
 // begin:: Background utilities 
-.bg_primary {
-  background-color: var(--primary-color);
-  color: #fff;
+.bg {
+  &_primary {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+
+  &_secondary {
+    background-color: var(--secondary-color);
+  }
 }
 // end:: Background utilities 
 

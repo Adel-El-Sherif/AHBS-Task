@@ -8,9 +8,19 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         loadChildren: () =>
-          import('../modules/home/home.module').then((m) => m.HomeModule)
+          import('../modules/home/home.module').then((m) => m.HomeModule),
+      },
+      {
+        path: 'product',
+        loadChildren: () =>
+          import('../modules/product/product.module').then((m) => m.ProductModule),
+        data: {
+          breadcrumb: {
+            label: 'Product',
+          }
+        }
       },
       {
         path: '',

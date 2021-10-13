@@ -1,9 +1,22 @@
-<div class="container-fluid">
-    <section class="container-fluid py-2 bg_primary main-rounded">
+<div class="container-fluid toolbar position-relative">
+    <section class="container-fluid bg_primary main-rounded d-flex align-items-center">
 
         <!-- begin:: hamburger icon component  -->
-        <app-hamburger-icon (click)="toggleNavbar()" [isOpen]="isOpen"></app-hamburger-icon>
+        <app-hamburger-icon class="me-4 py-1 pe-3 border-end d-flex" (click)="toggleNavbar()" [isOpen]="isOpen"></app-hamburger-icon>
         <!-- end:: hamburger icon component  -->
 
+        <!-- begin:: breadcrumb  -->
+        <app-ahbs-breadcrumb></app-ahbs-breadcrumb>
+        <!-- end:: breadcrumb  -->
+
     </section>
+
+     <!-- begin:: navbar  -->
+     <app-navbar [class.toolbar__navbar--show]="isOpen" (navigating)="hideNavbar($event)" class="mt-2 bg_secondary main-rounded toolbar__navbar"></app-navbar>
+     <!-- end:: navbar  -->
+
 </div>
+
+<!-- begin:: overlay  -->
+<div (click)="toggleNavbar()" class="overlay" [class.show]="isOpen"></div>
+<!-- end:: overlay  -->

@@ -1,3 +1,4 @@
+import { NavigationStart, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,14 +12,36 @@ export class ToolbarComponent implements OnInit {
   isOpen: boolean = false;
   // end:: booleans 
 
-  constructor() { }
+  constructor(
+    private _Router: Router,
+  ) { }
 
   ngOnInit(): void {
+
+    this.detectOnNavigationStart();
+
   }
+
+
+  // A function that detects if navigation has been started 
+  detectOnNavigationStart(): void {
+    this._Router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          this.isOpen = false
+        }
+    });
+  }
+
 
   // To toggle navigation bar 
   toggleNavbar():void {
     this.isOpen = !this.isOpen; 
+  }
+
+  // To hide bar 
+  hideNavbar(event: any): void {
+    event ? this.isOpen = false : null;
   }
 
 }

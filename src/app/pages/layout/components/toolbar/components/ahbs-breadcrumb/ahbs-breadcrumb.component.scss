@@ -1,0 +1,35 @@
+:host {
+    ::ng-deep {
+
+        .xng-breadcrumb-link {
+
+            // TypographyBlock 
+            color: #5f95c8;
+
+            &:hover {
+
+                // TypographyBlock 
+                text-decoration: none;
+                color: #5f95c8;
+            }
+        }
+
+        .xng-breadcrumb-separator {
+            // TypographyBlock 
+            color: #5f95c8;
+        }
+
+        .xng-breadcrumb-trail {
+            // TypographyBlock 
+            color: #fff;
+        }
+        .mat-icon {
+            // Structure Block
+            height: fit-content;
+            font-size: 1.4rem;
+
+            // TypographyBlock 
+            color: #fff;
+        }
+    }
+}
