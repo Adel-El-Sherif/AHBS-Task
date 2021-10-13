@@ -7,6 +7,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserCardComponent } from './layout/components/header/components/user-card/user-card.component';
 import { SelectLanguageComponent } from './layout/components/header/components/select-language/select-language.component';
+import { ToolbarComponent } from './layout/components/toolbar/toolbar.component';
+import { HamburgerIconComponent } from './layout/components/toolbar/hamburger-icon/hamburger-icon.component';
 
 
 
@@ -16,7 +18,9 @@ import { SelectLanguageComponent } from './layout/components/header/components/s
     HeaderComponent,
     FooterComponent,
     UserCardComponent,
-    SelectLanguageComponent
+    SelectLanguageComponent,
+    ToolbarComponent,
+    HamburgerIconComponent
   ],
   imports: [
     CommonModule,

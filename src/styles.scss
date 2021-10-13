@@ -55,12 +55,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .form-control {
   border-radius: var(--main-rounded);
 }
+// end:: global style 
 
+// begin:: text utilities 
 .text-primary {
   color: var(--primary-color) !important;
 }
+// end:: text utilities 
 
+
+// begin:: border utilities 
 .rounded-0 {
   border-radius: 0;
 }
-// end:: global style 
+
+.main-rounded {
+  border-radius: var(--main-rounded);  
+}
+// begin:: border utilities 
+
+
+// begin:: Background utilities 
+.bg_primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+// end:: Background utilities 
+
