@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms'
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +23,8 @@ import { GlobalSearchFormComponent } from './components/global-search-form/globa
     NgSelectModule,
     MatRadioModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule
   ], 
   exports: [    
     NgbModule,
@@ -33,6 +34,7 @@ import { GlobalSearchFormComponent } from './components/global-search-form/globa
     NgSelectModule,
     MatButtonModule,
     MatCheckboxModule,
+    ReactiveFormsModule,
     SectionHeadingComponent,
     GlobalSearchFormComponent,
   ]

@@ -8,9 +8,9 @@
 
     <div class="basic-information__body py-4">
         <!-- begin:: form  -->
-        <form class="basic-information__form">
+        <form [formGroup]="myForm" class="basic-information__form">
 
-            <div class="row align-items-center">
+            <div class="row">
 
                 <!-- begin:: Warehouse -->
                 <div class="col-md-6 col-lg-4">
@@ -18,13 +18,17 @@
                         <label for="warehouse" class="form-label text-primary">Warehouse <span class="text-danger">*</span></label>
                         <ng-select
                             id="warehouse"
-                            [items]="cars" 
-                            bindLabel="name" 
                             bindValue="id" 
-                        >
-                                <!-- [(ngModel)]="selectedCar" -->
+                            bindLabel="name" 
+                            [items]="warehouse" 
+                            (change)="onWarehouseChange()"
+                            placeholder="Select Warehouse"
+                            formControlName="warehouseID"
+                            >
                         </ng-select>
-                        <div class="form-text">We'll never share your email with anyone else.</div>
+                        <ng-container *ngIf="controlHasError('required', null, null, 'warehouseID', null)">
+                            <div class="form-text text-danger invalid-feedback"><small> Warehouse is required</small></div>
+                        </ng-container>
                     </div>
                 </div>
                 <!-- end:: Warehouse -->
@@ -35,20 +39,25 @@
                         <label for="type" class="form-label text-primary">Type <span class="text-danger">*</span></label>
                         <ng-select
                             id="type"
-                            [items]="cars" 
+                            [items]="warehouseTypes" 
                             bindLabel="name" 
                             bindValue="id" 
+                            formControlName="typeId"
+                            placeholder="Select UOM Type"
+                            [readonly]="!warehouseTypes.length"
+                            [class.disabled]="!warehouseTypes.length"
                         >
-                                <!-- [(ngModel)]="selectedCar" -->
                         </ng-select>
-                        <div class="form-text">We'll never share your email with anyone else.</div>
+                        <ng-container *ngIf="controlHasError('required', null, null, 'typeId', null)">
+                            <div class="form-text text-danger invalid-feedback"> <small>Type is required</small> </div>
+                        </ng-container>
                     </div>
                 </div>
                 <!-- end:: Warehouse -->
 
                 <!-- begin:: Show Zero Balance -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="mb-4 form-control-wrapper">
+                <div class="col-md-6 col-lg-4 d-flex align-items-center">
+                    <div class="form-control-wrapper">
                         <p><mat-checkbox class="text-primary" [color]="color">Show Zero Balance</mat-checkbox></p>
                     </div>
                 </div>
@@ -73,20 +82,23 @@
                         <label for="type" class="form-label text-primary">Product <span class="text-danger">*</span></label>
                         <ng-select
                             id="type"
-                            [items]="cars" 
+                            [items]="warehouse" 
                             bindLabel="name" 
                             bindValue="id" 
                             [multiple]="true"
+                            placeholder="Select Product"
                         >
                             <!-- [(ngModel)]="selectedCar" -->
                         </ng-select>
-                        <div class="form-text">We'll never share your email with anyone else.</div>
+                        <ng-container *ngIf="controlHasError('required', null, null, 'typeId', null)">
+                            <div class="form-text text-danger invalid-feedback"><small> Product is required</small></div>
+                        </ng-container>
                     </div>
                 </div>
                 <!-- end:: Warehouse -->
 
                 <div class="col-12 text-end">
-                    <button class="px-4" mat-raised-button [color]="'primary'">Search</button>
+                    <button [disabled]="!myForm.valid" class="px-4" mat-raised-button [color]="'primary'">Search</button>
                 </div>
 
             </div>
