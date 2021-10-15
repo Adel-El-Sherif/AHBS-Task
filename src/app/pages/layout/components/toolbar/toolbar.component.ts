@@ -1,15 +1,21 @@
-import { NavigationStart, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent implements OnInit, OnDestroy {
+
+  // begin properties _______________
+  subscription: Subscription = new Subscription();
+  // end properties _______________
 
   // begin:: booleans 
   isOpen: boolean = false;
+  isHome: boolean = false;
   // end:: booleans 
 
   constructor(
@@ -18,22 +24,27 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.isHomePage();
     this.detectOnNavigationStart();
-
   }
 
 
   // A function that detects if navigation has been started 
   detectOnNavigationStart(): void {
-    this._Router.events
+    this.subscription.add(this._Router.events
       .subscribe((event) => {
-        if (event instanceof NavigationStart) {
+        if (event instanceof NavigationEnd) {
           this.isOpen = false
+          this.isHomePage();
         }
-    });
+    }));
   }
 
-
+  // To check if the current page is home  to show and hide the page name. 
+  isHomePage(): void {
+    this.isHome = this._Router.url === '' ||  this._Router.url === '/'  ? true : false;    
+  }
+  
   // To toggle navigation bar 
   toggleNavbar():void {
     this.isOpen = !this.isOpen; 
@@ -42,6 +53,12 @@ export class ToolbarComponent implements OnInit {
   // To hide bar 
   hideNavbar(event: any): void {
     event ? this.isOpen = false : null;
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.subscription.unsubscribe();
   }
 
 }

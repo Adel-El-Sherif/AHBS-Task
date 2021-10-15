@@ -35,6 +35,10 @@ $AHBS-task-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+// ng-select default theme 
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -42,7 +46,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 :root {
   --primary-color: #1257a8;
   --secondary-color: #eff7ff;
+  --info-color: #72d9dc;
   --main-rounded: 5px;  
+  --muted-color: #cecece;
   --body-bg: #eff7ff;
   --input-bg: #e8f0f7;
 }
@@ -55,6 +61,98 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // begin:: global style 
 .form-control {
   border-radius: var(--main-rounded);
+}
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary,
+.mat-radio-button.mat-primary .mat-radio-inner-circle, .mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-primary:active .mat-radio-persistent-ripple,
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element,
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
+.mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: var(--primary-color);
+}
+
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--primary-color);
+}
+
+.ng-select {
+  .ng-select-container {
+    background-color: #f5f7f9;
+    border-color: #dee3e8;
+  }
+}
+
+.ng-dropdown-panel {
+  background-color: #f5f7f9;
+  border-color: #dee3e8;
+}
+
+
+.ng-select-focused {
+  .ng-select-container {
+    border-color: #dee3e8 !important
+  }
+}
+
+.ng-select.ng-select-multiple {
+  .ng-select-container {
+    .ng-value-container {
+      .ng-value {
+        display: flex;
+        padding: 0 .3rem;
+        white-space: nowrap;
+        align-items: center;
+        border-radius: 22px;
+        border: 1px solid #dee3e8;
+        flex-direction: row-reverse;
+        background-color: var(--secondary-color);
+
+        .ng-value-icon.left {
+          width: 16px;
+          height: 16px;
+          color: #fff;
+          display: flex;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          background: var(--primary-color);
+        }
+
+        .ng-value-label {
+          padding-left: 0;
+        }
+
+      }
+    }
+
+    .ng-arrow-wrapper {
+      height: 36px
+    }
+  }
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items
+.ng-option.ng-option-selected .ng-option-label,
+.ng-dropdown-panel .ng-dropdown-panel-items
+.ng-option.ng-option-selected.ng-option-marked
+.ng-option-label {
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+
+
+.ng-select .ng-arrow-wrapper {
+  width: 33px;
+  padding-right: 0;
+  background: var(--secondary-color);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #dee3e8;
 }
 
 a {
@@ -78,8 +176,14 @@ a {
 // end:: global style 
 
 // begin:: text utilities 
-.text-primary {
-  color: var(--primary-color) !important;
+.text {
+  &-primary {
+    color: var(--primary-color) !important;
+  }
+
+  &-muted {
+    color: var(--muted-color);
+  }
 }
 // end:: text utilities 
 
@@ -107,4 +211,12 @@ a {
   }
 }
 // end:: Background utilities 
+
+
+// begin:: typography utilities 
+.fw-500 {
+  font-weight: 500 !important;
+}
+// end:: typography utilities 
+
 

@@ -1,0 +1,8 @@
+.section-heading {
+
+    ::ng-deep {
+        mat-icon {
+            color: var(--info-color);
+        } 
+    }
+}

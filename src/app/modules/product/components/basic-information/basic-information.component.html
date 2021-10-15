@@ -1,0 +1,96 @@
+<section class="basic-information">
+
+    <header>
+        <app-section-heading [title]="'Basic Information'">
+            <mat-icon icon>insert_comment</mat-icon>
+        </app-section-heading>
+    </header>
+
+    <div class="basic-information__body py-4">
+        <!-- begin:: form  -->
+        <form class="basic-information__form">
+
+            <div class="row align-items-center">
+
+                <!-- begin:: Warehouse -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="mb-4 form-control-wrapper">
+                        <label for="warehouse" class="form-label text-primary">Warehouse <span class="text-danger">*</span></label>
+                        <ng-select
+                            id="warehouse"
+                            [items]="cars" 
+                            bindLabel="name" 
+                            bindValue="id" 
+                        >
+                                <!-- [(ngModel)]="selectedCar" -->
+                        </ng-select>
+                        <div class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                </div>
+                <!-- end:: Warehouse -->
+
+                <!-- begin:: Warehouse -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="mb-4 form-control-wrapper">
+                        <label for="type" class="form-label text-primary">Type <span class="text-danger">*</span></label>
+                        <ng-select
+                            id="type"
+                            [items]="cars" 
+                            bindLabel="name" 
+                            bindValue="id" 
+                        >
+                                <!-- [(ngModel)]="selectedCar" -->
+                        </ng-select>
+                        <div class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                </div>
+                <!-- end:: Warehouse -->
+
+                <!-- begin:: Show Zero Balance -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="mb-4 form-control-wrapper">
+                        <p><mat-checkbox class="text-primary" [color]="color">Show Zero Balance</mat-checkbox></p>
+                    </div>
+                </div>
+                <!-- end:: Show Zero Balance -->
+
+                <!-- begin:: Show Zero Balance -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="mb-4 form-control-wrapper">
+                        <label for="warehouse" class="form-label text-primary">Product Classification </label>
+
+                        <mat-radio-group class="w-100 d-flex justify-content-between" aria-label="Select an option">
+                            <mat-radio-button class="me-2 text-muted" [color]="color" value="1">All Product</mat-radio-button>
+                            <mat-radio-button class="text-muted" [color]="color" value="2">Specific Product</mat-radio-button>
+                        </mat-radio-group>           
+                    </div>
+                </div>
+                <!-- end:: Show Zero Balance -->
+
+                <!-- begin:: Warehouse -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="mb-4 form-control-wrapper">
+                        <label for="type" class="form-label text-primary">Product <span class="text-danger">*</span></label>
+                        <ng-select
+                            id="type"
+                            [items]="cars" 
+                            bindLabel="name" 
+                            bindValue="id" 
+                            [multiple]="true"
+                        >
+                            <!-- [(ngModel)]="selectedCar" -->
+                        </ng-select>
+                        <div class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                </div>
+                <!-- end:: Warehouse -->
+
+                <div class="col-12 text-end">
+                    <button class="px-4" mat-raised-button [color]="'primary'">Search</button>
+                </div>
+
+            </div>
+        </form>
+        <!-- end:: form  -->
+    </div>
+</section>

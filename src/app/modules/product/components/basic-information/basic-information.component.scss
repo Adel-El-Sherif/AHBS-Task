@@ -1,0 +1,16 @@
+.basic-information {
+    &__form {
+        .form-control-wrapper {
+
+            // Large devices (desktops, 992px and up)
+            @media (min-width: 992px) { 
+                width: 75%;   
+            }
+
+            // Small devices (landscape phones, less than 768px)
+            @media (max-width: 767.98px) { 
+                width: 100%;
+            }
+        }
+    }
+}

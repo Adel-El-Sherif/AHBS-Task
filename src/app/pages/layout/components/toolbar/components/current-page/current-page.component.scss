@@ -1,0 +1,15 @@
+
+.current-page-title {
+    h3 {
+        font-weight: 500;
+    }
+
+    ::ng-deep {
+        .xng-breadcrumb-list {
+            .xng-breadcrumb-separator,
+            .xng-breadcrumb-item:not(:last-of-type) {
+                display: none;
+            }
+        }
+    }
+}

@@ -15,6 +15,10 @@
      <app-navbar [class.toolbar__navbar--show]="isOpen" (navigating)="hideNavbar($event)" class="mt-2 bg_secondary main-rounded toolbar__navbar"></app-navbar>
      <!-- end:: navbar  -->
 
+    <!-- begin:: navbar  -->
+    <app-current-page *ngIf="!isHome"></app-current-page>
+    <!-- end:: navbar  -->
+
 </div>
 
 <!-- begin:: overlay  -->

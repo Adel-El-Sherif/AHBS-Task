@@ -13,6 +13,7 @@ import { HamburgerIconComponent } from './layout/components/toolbar/components/h
 import { SelectLanguageComponent } from './layout/components/header/components/select-language/select-language.component';
 import { AhbsBreadcrumbComponent } from './layout/components/toolbar/components/ahbs-breadcrumb/ahbs-breadcrumb.component';
 import { NavbarComponent } from './layout/components/toolbar/components/navbar/navbar.component';
+import { CurrentPageComponent } from './layout/components/toolbar/components/current-page/current-page.component';
 
 
 
@@ -27,6 +28,7 @@ import { NavbarComponent } from './layout/components/toolbar/components/navbar/n
     AhbsBreadcrumbComponent,
     SelectLanguageComponent,
     NavbarComponent,
+    CurrentPageComponent,
   ],
   imports: [
     CommonModule,
