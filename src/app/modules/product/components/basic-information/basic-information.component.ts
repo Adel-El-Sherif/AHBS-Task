@@ -32,6 +32,7 @@ export class BasicInformationComponent implements OnInit {
 
   // begin:: booleans ____
   showProductField: boolean = false;
+  isShowZero: boolean = false;
   // end:: booleans ____
 
   
@@ -52,7 +53,7 @@ export class BasicInformationComponent implements OnInit {
       warehouseID: [null, Validators.compose([Validators.required])],
       typeId: [null, Validators.compose([Validators.required])],
       showZero: [false],
-      productClassification: ['all'],
+      productClassification: [{value: 'all', disabled: true}],
       selectedProductsIds: [[]]
     })
   }
@@ -72,9 +73,22 @@ export class BasicInformationComponent implements OnInit {
   onWarehouseTypesChange(): void {
     this.myForm.get('selectedProductsIds').setValue([]);
     this.selectedTypeID = this.myForm.get('typeId').value;
-    this.getProducts(this.selectedTypeID);
+    if (this.selectedTypeID ) {
+      (this.myForm.get('productClassification') as FormControl).enable()
+      this.getProducts(this.selectedTypeID, [], this.isShowZero);
+    } else {
+      (this.myForm.get('productClassification') as FormControl).disable()
+    }
   }
   
+  // On show Zero Change
+  showZeroChange(): void {
+    this.myForm.get('selectedProductsIds').setValue([]);
+    this.isShowZero = this.myForm.get('showZero').value;
+    this.getProducts(this.selectedTypeID, [], this.isShowZero);
+  }
+
+
 
   // On Product Classification Change
   onProductClassificationChange(): void {
@@ -94,8 +108,8 @@ export class BasicInformationComponent implements OnInit {
 
 
   // To get all products by type id 
-  getProducts(typeId: number, productIDs?: number[]): void {
-    this.products = this._ProductService.getProducts(typeId, productIDs);
+  getProducts(typeId: number, productIDs?: number[], showZero?: boolean): void {
+    this.products = this._ProductService.getProducts(typeId, productIDs, showZero);
   }
 
   // To get all data 
@@ -141,12 +155,10 @@ export class BasicInformationComponent implements OnInit {
   // On my form submit 
   search(): void {
     let formValue = this.myForm.value;
-    if ( formValue.selectedProductsIds.length ) {
-      this.getProducts(formValue.typeId, formValue.selectedProductsIds);
-    } else {
-      this.getProducts(formValue.typeId)
-    }
-    this.searchResult.emit(this.products)    
+    let searchResult = this._ProductService.getProducts(formValue.typeId, formValue.selectedProductsIds, formValue.showZero);
+    this.searchResult.emit(searchResult)   
+    console.log(formValue.showZero);
+     
   }
 
 }

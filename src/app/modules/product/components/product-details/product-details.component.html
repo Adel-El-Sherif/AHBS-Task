@@ -23,7 +23,7 @@
                     <ng-container *ngIf="products.length">
                         <tr *ngFor="let product of products">
                             <td>{{ product.name }}</td>
-                            <td>{{ product.name }}</td>
+                            <td>{{ product.onHand }}</td>
                             <td>{{ product.typeName }}</td>
                         </tr>
                     </ng-container>
@@ -32,8 +32,8 @@
                     <tr>
                         <td>
                             <app-paginator
-                            class="d-flex justify-content-between align-items-center flex-wrap"
-                            [page]="0"
+                            class="d-flex justify-content-between align-items-center"
+                            [page]="4"
                             [page_size]="0"
                             [isLoading]="false"
                             [collectionSize]="5"

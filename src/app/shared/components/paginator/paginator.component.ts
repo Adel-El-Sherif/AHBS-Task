@@ -4,12 +4,13 @@ import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.scss']
+  styleUrls: ['./paginator.component.scss'],
+  providers: [NgbPaginationConfig] // add NgbPaginationConfig to the component providers
 })
 export class PaginatorComponent implements OnInit {
 
-  @Input() page = 0;
-  @Input() collectionSize = 0;
+  @Input() page = 4;
+  @Input() collectionSize = 70;
   @Input() page_size = 0;
   @Input() paginator: any;
   pageSizes: number[] = [];

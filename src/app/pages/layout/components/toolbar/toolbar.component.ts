@@ -15,7 +15,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   // begin:: booleans 
   isOpen: boolean = false;
-  isHome: boolean = false;
   // end:: booleans 
 
   constructor(
@@ -24,26 +23,20 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.isHomePage();
-    this.detectOnNavigationStart();
   }
 
 
   // A function that detects if navigation has been started 
-  detectOnNavigationStart(): void {
+  detectOnNavigationEnd(): void {
     this.subscription.add(this._Router.events
       .subscribe((event) => {
         if (event instanceof NavigationEnd) {
           this.isOpen = false
-          this.isHomePage();
         }
     }));
   }
 
-  // To check if the current page is home  to show and hide the page name. 
-  isHomePage(): void {
-    this.isHome = this._Router.url === '' ||  this._Router.url === '/'  ? true : false;    
-  }
+  
   
   // To toggle navigation bar 
   toggleNavbar():void {

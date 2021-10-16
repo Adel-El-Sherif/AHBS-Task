@@ -4,4 +4,9 @@ main {
     display: grid;
     grid-template-rows: auto 1fr auto;
     background-color: var(--body-bg);
+
+    header {
+        // Structure Block 
+        background-color: var(--body-bg);
+    }
 }

@@ -1,4 +1,7 @@
 :host {
+    overflow: auto;
+    white-space: nowrap;
+
     ::ng-deep {
         .pagination {
             // Structure Block 

@@ -15,11 +15,11 @@
           
             <div class="row">
 
-                <div class="col">
+                <!-- <div class="col">
                     <pre>
                         {{myForm.value | json}}
                     </pre>
-                </div>
+                </div> -->
                 <!-- begin:: Warehouse -->
                 <div class="col-md-6 col-lg-4">
                     <div class="mb-4 form-control-wrapper">
@@ -35,7 +35,7 @@
                             >
                         </ng-select>
                         <ng-container *ngIf="controlHasError('required', null, null, 'warehouseID', null)">
-                            <div class="form-text text-danger invalid-feedback"><small> Warehouse is required</small></div>
+                            <div class="form-text text-danger invalid-feedback mt-0"><small> Warehouse is required</small></div>
                         </ng-container>
                     </div>
                 </div>
@@ -54,20 +54,19 @@
                             placeholder="Select UOM Type"
                             (change)="onWarehouseTypesChange()"
                             [readonly]="!warehouseTypes.length"
-                            [class.disabled]="!warehouseTypes.length"
                         >
                         </ng-select>
                         <ng-container *ngIf="controlHasError('required', null, null, 'typeId', null)">
-                            <div class="form-text text-danger invalid-feedback"> <small>Type is required</small> </div>
+                            <div class="form-text text-danger invalid-feedback mt-0"> <small>Type is required</small> </div>
                         </ng-container>
                     </div>
                 </div>
                 <!-- end:: Warehouse -->
 
                 <!-- begin:: Show Zero Balance -->
-                <div class="col-md-6 col-lg-4 d-flex align-items-center">
+                <div class="mb-3 mb-lg-0 col-md-6 col-lg-4 d-flex align-items-center">
                     <div class="form-control-wrapper">
-                        <p><mat-checkbox formControlName="showZero" class="text-primary" [color]="color">Show Zero Balance</mat-checkbox></p>
+                        <p><mat-checkbox (change)="showZeroChange()" formControlName="showZero" class="text-primary" [color]="color">Show Zero Balance</mat-checkbox></p>
                     </div>
                 </div>
                 <!-- end:: Show Zero Balance -->
@@ -77,9 +76,9 @@
                    
                     <div class="mb-4 form-control-wrapper">
                         <label for="warehouse" class="form-label text-primary">Product Classification</label>
+                        <!-- [disabled]="!selectedTypeID" -->
                         <mat-radio-group 
                             aria-label="Select an option"
-                            [disabled]="!selectedTypeID"
                             formControlName="productClassification"
                             (change)="onProductClassificationChange()"
                             class="w-100 d-flex justify-content-between"
@@ -108,15 +107,15 @@
                                 <!-- [(ngModel)]="selectedCar" -->
                             </ng-select>
                             <ng-container *ngIf="controlHasError('required', null, null, 'selectedProductsIds', null)">
-                                <div class="form-text text-danger invalid-feedback"><small> Product is required</small></div>
+                                <div class="form-text text-danger invalid-feedback mt-0"><small> Product is required</small></div>
                             </ng-container>
                         </div>
                     </div>
                 </ng-container>
                 <!-- end:: Warehouse -->
 
-                <div class="col-12 text-end">
-                    <button [disabled]="!myForm.valid" class="px-4" mat-raised-button [color]="'primary'">Search</button>
+                <div class="col-12 text-end mt-3">
+                    <button [disabled]="!myForm.valid" class="px-5 submit-btn" mat-raised-button [color]="'primary'">Search</button>
                 </div>
 
             </div>

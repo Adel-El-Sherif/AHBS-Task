@@ -1,6 +1,7 @@
 export interface Product {
-    typeId: number,
-    typeName: string,
     id: number,
     name: string
+    onHand: number,
+    typeId: number,
+    typeName: string,
 }

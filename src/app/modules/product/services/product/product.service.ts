@@ -80,70 +80,78 @@ export class ProductService {
   private setProducts(): void {
     this.products = [
       {
+        id: 1,
+        name: 'Product 1',
+        onHand: 53,
         typeId: 1,
         typeName: 'typeA',
-        id: 1,
-        name: 'Product 1'
       },
       {
+        id: 2,
+        name: 'Product 2',
+        onHand: 73,
         typeId: 2,
         typeName: 'typeB',
-        id: 2,
-        name: 'Product 2'
       },
 
       {
+        id: 3,
+        name: 'Product 3',
+        onHand: 953,
         typeId: 3,
         typeName: 'typeG',
-        id: 3,
-        name: 'Product 3'
       },
 
       {
+        id: 4,
+        name: 'Product 4',
+        onHand: 0,
         typeId: 4,
         typeName: 'typeB',
-        id: 4,
-        name: 'Product 4'
       },
 
       {
+        id: 5,
+        name: 'Product 5',
+        onHand: 0,
         typeId: 5,
         typeName: 'typeC',
-        id: 5,
-        name: 'Product 5'
       },
 
       {
+        id: 6,
+        name: 'Product 6',
+        onHand: 253,
         typeId: 6,
         typeName: 'typeE',
-        id: 6,
-        name: 'Product 6'
       },
 
       {
         typeId: 1,
-        typeName: 'typeA',
+        name: 'Product 7',
+        onHand: 253,
         id: 7,
-        name: 'Product 7'
+        typeName: 'typeA',
       },
 
       {
+        id: 8,
+        name: 'Product 8',
+        onHand: 0,
         typeId: 2,
         typeName: 'typeB',
-        id: 8,
-        name: 'Product 8'
       },
 
       {
+        id: 9,
+        name: 'Product 9',
+        onHand: 153,
         typeId: 3,
         typeName: 'typeG',
-        id: 9,
-        name: 'Product 9'
       },
 
     ]
   }
-
 
 
   /**
@@ -171,10 +179,10 @@ export class ProductService {
    * @param ArrayOfProductIDs
    * @returns {Product[]} Array of products
    */
-  getProducts(typeID: number, productIDs?: number[]): Product[] {   
+  getProducts(typeID: number, productIDs?: number[], showZero?: boolean): Product[] {   
     let products = this.products.filter((product) => {
       if (!productIDs?.length) {
-        return product.typeId == typeID;
+        return showZero ? product.typeId == typeID : product.typeId == typeID && product.onHand != 0;
       } else {
         return product.typeId == typeID && productIDs.includes(product.id)
       }

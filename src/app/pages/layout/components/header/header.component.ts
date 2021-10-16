@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  // begin booleans _________
+  public isCollapsed: boolean = true;
+  // end booleans _________
+
   constructor() { }
 
   ngOnInit(): void {

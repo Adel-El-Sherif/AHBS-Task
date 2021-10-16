@@ -13,9 +13,12 @@
     z-index: -1;
     position: fixed;
     // Structure Block 
+    display: none;
     background-color: rgba(0, 0, 0,.5);
     &.show {
-       z-index: 1;
+        // Structure Block 
+        display: block;
+        z-index: 1;
     }
  
 }

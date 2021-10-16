@@ -1,0 +1,21 @@
+.navbar {
+    // Positioning Block 
+    z-index: 2;
+
+    .navbar-brand {
+       img {
+            // X-Small devices (portrait phones, less than 576px)
+            @media (max-width: 575.98px) { 
+                width: 141px;
+            }
+       }
+    }
+
+    &__content {
+        // Large devices (desktops, 992px and up)
+        @media (min-width: 992px) { 
+            border: 0 !important;   
+        }
+    }
+
+}

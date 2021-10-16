@@ -1,8 +1,8 @@
 <!-- start: Paginator -->
 <div class="d-flex flex-wrap me-3">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page"></ngb-pagination>
+    <ngb-pagination [collectionSize]="0" [(page)]="page"></ngb-pagination>
 </div>
-
+<!-- [disabled]="true"  -->
 <div class="d-flex align-items-center">
 
     <!-- begin: loading -->
@@ -16,6 +16,7 @@
     <ng-select
         class="form-control-sm p-0"
         id="type"
+        [readonly]="true"
         [clearable]="false"
         [items]="pageSizes" 
         [(ngModel)]="page_size"

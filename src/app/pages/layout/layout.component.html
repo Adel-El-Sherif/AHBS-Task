@@ -1,6 +1,6 @@
 <main>
 
-    <header>
+    <header class="sticky-top">
         <!-- begin:: header  -->
         <app-header></app-header>
         <!-- footer:: header  -->
@@ -8,13 +8,25 @@
         <!-- begin:: toolbar  -->
         <app-toolbar class="mt-2 d-block"></app-toolbar>
         <!-- end:: toolbar  -->
+
     </header>
 
-    <!-- begin:: body  -->
-    <div class="body bg-white m-3 mt-2 main-rounded py-4 px-3 px-lg-5">
-        <router-outlet></router-outlet>
+    <div class="body m-3 mt-0 d-flex flex-column">
+
+        <div *ngIf="!isHome" class="">
+            <!-- begin:: current page title  --> 
+            <app-current-page></app-current-page>
+            <!-- end:: current page title  -->
+        </div>
+
+        <!-- begin:: body  -->
+        <div class="bg-white mt-3 mt-2 main-rounded py-4 px-3 px-lg-5 h-100">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- end:: body  -->
+
     </div>
-    <!-- end:: body  -->
+ 
 
     <!-- begin:: footer  -->
     <app-footer></app-footer>
