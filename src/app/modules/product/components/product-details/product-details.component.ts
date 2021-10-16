@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Product } from '../../models/product/product';
+import { ProductService } from '../../services/product/product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -7,16 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsComponent implements OnInit {
 
+
+  // begin:: decorator properties _____
+  @Input() products: Product[] = [];
+  // end:: decorator properties _____
+
   // begin:: pagination props ___
   isLoading: boolean = false;
   // end:: pagination props ___
 
-  constructor() { }
+  constructor(
+    private _ProductService : ProductService
+  ) { }
 
-  ngOnInit(): void {
-  }
-
-
+  ngOnInit(): void { }
 
   // pagination handler
   paginate(event: any) {

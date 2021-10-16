@@ -38,6 +38,12 @@ $AHBS-task-theme: mat.define-light-theme((
 // ng-select default theme 
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+html {
+  // X-Small devices (portrait phones, less than 576px)
+  @media (max-width: 575.98px) { 
+    font-size: 85%; 
+  }
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -64,8 +70,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary,
-.mat-radio-button.mat-primary .mat-radio-inner-circle, .mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
-.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-primary:active .mat-radio-persistent-ripple,
+.mat-radio-button.mat-primary .mat-radio-inner-circle, .mat-radio-button.mat-primary
+.mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-primary:active .mat-radio-persistent-ripple,
 .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element,
 .mat-checkbox:active:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element,
 .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
@@ -75,6 +83,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
   border-color: var(--primary-color);
+}
+
+.mat-radio-disabled {
+
+}
+
+.mat-radio-button.mat-radio-disabled.mat-radio-checked .mat-radio-outer-circle,
+.mat-radio-button.mat-radio-disabled .mat-radio-outer-circle {
+  border-color: #ddd !important;
+}
+
+.mat-radio-button.mat-radio-disabled .mat-radio-ripple .mat-ripple-element,
+.mat-radio-button.mat-radio-disabled .mat-radio-inner-circle {
+  background-color: #ddd !important;
 }
 
 .ng-select {

@@ -20,11 +20,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <ng-container *ngIf="false">
-                        <tr>
-                            <td>Amr Mostafa</td>
-                            <td>Sr. Product Manager</td>
-                            <td>amrmostafa</td>
+                    <ng-container *ngIf="products.length">
+                        <tr *ngFor="let product of products">
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.typeName }}</td>
                         </tr>
                     </ng-container>
                 </tbody>
@@ -45,7 +45,7 @@
             </table>
 
             <!-- begin:: if no data  -->
-            <ng-container>
+            <ng-container *ngIf="!products.length">
                 <div class="no-data d-flex align-items-center flex-column justify-content-center">
                     <img src="assets/images/product/noDataFoundGreen.svg" alt="No Data Icon">
                     <h4 class="mt-2  mb-0 text-center">Select Warehouse and Product</h4>

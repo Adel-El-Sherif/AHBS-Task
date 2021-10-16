@@ -1,10 +1,10 @@
 <!-- Begin:: basic information section  -->
-<app-basic-information></app-basic-information>
+<app-basic-information (searchResult)="getProduct($event)"></app-basic-information>
 <!-- end:: basic information section  -->
 
 
 <!-- Begin:: Product Details section  -->
-<app-product-details></app-product-details>
+<app-product-details [products]="products" ></app-product-details>
 <!-- end:: Product Details section  -->
 
 

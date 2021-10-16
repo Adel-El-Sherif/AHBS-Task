@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { WarehouseType } from '../../models/warehous-types/warehous-types';
+import { Product } from '../../models/product/product';
 import { Warehouse } from '../../models/warehouse/warehouse';
 import { ProductService } from '../../services/product/product.service';
+import { WarehouseType } from '../../models/warehous-types/warehous-types';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basic-information',
@@ -12,10 +13,17 @@ import { ProductService } from '../../services/product/product.service';
 })
 export class BasicInformationComponent implements OnInit {
 
+  // begin:: decorator properties _____
+  @Output() searchResult: EventEmitter<Product[]> = new EventEmitter();
+  // end:: decorator properties _____
+
+
   // begin:: properties ____
   myForm: any;
-  warehouseID: any;
+  selectedTypeID: any; 
   selectedCar: number = 0;
+  selectedWarehouseID: any;
+  products: Product[] = [];
   warehouse: Warehouse[] = [];
   color: ThemePalette = 'primary';
   productClassification: string = '';
@@ -45,23 +53,33 @@ export class BasicInformationComponent implements OnInit {
       typeId: [null, Validators.compose([Validators.required])],
       showZero: [false],
       productClassification: ['all'],
-      selectedProductsIds: []
+      selectedProductsIds: [[]]
     })
   }
 
 
   // On Warehouse Change
   onWarehouseChange(): void {
-    this.warehouseID = this.myForm.get('typeId').setValue(null);
-    this.warehouseID = this.myForm.get('warehouseID').value;
-    this.getWarehouseTypesById(this.warehouseID);
+    this.products = [];
+    this.myForm.get('typeId').setValue(null);
+    this.myForm.get('selectedProductsIds').setValue([]);
+    this.selectedWarehouseID = this.myForm.get('warehouseID').value;
+    this.getWarehouseTypesById(this.selectedWarehouseID);
+  }
+
+
+  // On Warehouse Types Change
+  onWarehouseTypesChange(): void {
+    this.myForm.get('selectedProductsIds').setValue([]);
+    this.selectedTypeID = this.myForm.get('typeId').value;
+    this.getProducts(this.selectedTypeID);
   }
   
 
   // On Product Classification Change
   onProductClassificationChange(): void {
     let productFormControl: FormControl = this.myForm.get('selectedProductsIds');
-    productFormControl.setValue(null);
+    productFormControl.setValue([]);
     let prodClassValue = this.myForm.get('productClassification').value;
     if(prodClassValue == 'specific') {
       this.showProductField = true;
@@ -69,11 +87,16 @@ export class BasicInformationComponent implements OnInit {
       productFormControl.updateValueAndValidity();  
     } else {
       this.showProductField = false;
-      productFormControl.setValidators(null);
+      productFormControl.setValidators([]);
       productFormControl.updateValueAndValidity();  
     }
   }
 
+
+  // To get all products by type id 
+  getProducts(typeId: number, productIDs?: number[]): void {
+    this.products = this._ProductService.getProducts(typeId, productIDs);
+  }
 
   // To get all data 
   getData(): void {
@@ -118,7 +141,12 @@ export class BasicInformationComponent implements OnInit {
   // On my form submit 
   search(): void {
     let formValue = this.myForm.value;
-    console.log(formValue);
+    if ( formValue.selectedProductsIds.length ) {
+      this.getProducts(formValue.typeId, formValue.selectedProductsIds);
+    } else {
+      this.getProducts(formValue.typeId)
+    }
+    this.searchResult.emit(this.products)    
   }
 
 }

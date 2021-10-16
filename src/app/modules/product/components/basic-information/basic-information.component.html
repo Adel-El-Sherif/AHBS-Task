@@ -12,8 +12,14 @@
         <!-- begin:: form  -->
         <form [formGroup]="myForm" (ngSubmit)="search()" class="basic-information__form">
 
+          
             <div class="row">
 
+                <div class="col">
+                    <pre>
+                        {{myForm.value | json}}
+                    </pre>
+                </div>
                 <!-- begin:: Warehouse -->
                 <div class="col-md-6 col-lg-4">
                     <div class="mb-4 form-control-wrapper">
@@ -41,11 +47,12 @@
                         <label for="type" class="form-label text-primary">Type <span class="text-danger">*</span></label>
                         <ng-select
                             id="type"
-                            [items]="warehouseTypes" 
-                            bindLabel="name" 
                             bindValue="id" 
+                            bindLabel="name" 
+                            [items]="warehouseTypes" 
                             formControlName="typeId"
                             placeholder="Select UOM Type"
+                            (change)="onWarehouseTypesChange()"
                             [readonly]="!warehouseTypes.length"
                             [class.disabled]="!warehouseTypes.length"
                         >
@@ -67,14 +74,16 @@
 
                 <!-- begin:: Show Zero Balance -->
                 <div class="col-md-6 col-lg-4">
+                   
                     <div class="mb-4 form-control-wrapper">
-                        <label for="warehouse" class="form-label text-primary">Product Classification </label>
-
+                        <label for="warehouse" class="form-label text-primary">Product Classification</label>
                         <mat-radio-group 
-                            (change)="onProductClassificationChange()"
+                            aria-label="Select an option"
+                            [disabled]="!selectedTypeID"
                             formControlName="productClassification"
+                            (change)="onProductClassificationChange()"
                             class="w-100 d-flex justify-content-between"
-                            aria-label="Select an option">
+                        >
                             <mat-radio-button  value="all" class="me-2 text-muted" [color]="color">All Product</mat-radio-button>
                             <mat-radio-button value="specific" class="text-muted" [color]="color">Specific Product</mat-radio-button>
                         </mat-radio-group>           
@@ -83,13 +92,13 @@
                 <!-- end:: Show Zero Balance -->
 
                 <!-- begin:: Warehouse -->
-                <ng-container *ngIf="showProductField">
+                <ng-container *ngIf="showProductField && selectedTypeID">
                     <div class="col-md-6 col-lg-6">
                         <div class="mb-4 form-control-wrapper">
                             <label for="type" class="form-label text-primary">Product <span class="text-danger">*</span></label>
                             <ng-select
                                 id="type"
-                                [items]="warehouse" 
+                                [items]="products" 
                                 bindLabel="name" 
                                 bindValue="id" 
                                 [multiple]="true"
