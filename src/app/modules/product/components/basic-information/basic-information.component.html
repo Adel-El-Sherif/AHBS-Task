@@ -1,14 +1,16 @@
 <section class="basic-information">
 
+    <!-- begin:: section title  -->
     <header>
         <app-section-heading [title]="'Basic Information'">
             <mat-icon icon>insert_comment</mat-icon>
         </app-section-heading>
     </header>
+    <!-- end:: section title  -->
 
     <div class="basic-information__body py-4">
         <!-- begin:: form  -->
-        <form [formGroup]="myForm" class="basic-information__form">
+        <form [formGroup]="myForm" (ngSubmit)="search()" class="basic-information__form">
 
             <div class="row">
 
@@ -58,7 +60,7 @@
                 <!-- begin:: Show Zero Balance -->
                 <div class="col-md-6 col-lg-4 d-flex align-items-center">
                     <div class="form-control-wrapper">
-                        <p><mat-checkbox class="text-primary" [color]="color">Show Zero Balance</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="showZero" class="text-primary" [color]="color">Show Zero Balance</mat-checkbox></p>
                     </div>
                 </div>
                 <!-- end:: Show Zero Balance -->
@@ -68,33 +70,40 @@
                     <div class="mb-4 form-control-wrapper">
                         <label for="warehouse" class="form-label text-primary">Product Classification </label>
 
-                        <mat-radio-group class="w-100 d-flex justify-content-between" aria-label="Select an option">
-                            <mat-radio-button class="me-2 text-muted" [color]="color" value="1">All Product</mat-radio-button>
-                            <mat-radio-button class="text-muted" [color]="color" value="2">Specific Product</mat-radio-button>
+                        <mat-radio-group 
+                            (change)="onProductClassificationChange()"
+                            formControlName="productClassification"
+                            class="w-100 d-flex justify-content-between"
+                            aria-label="Select an option">
+                            <mat-radio-button  value="all" class="me-2 text-muted" [color]="color">All Product</mat-radio-button>
+                            <mat-radio-button value="specific" class="text-muted" [color]="color">Specific Product</mat-radio-button>
                         </mat-radio-group>           
                     </div>
                 </div>
                 <!-- end:: Show Zero Balance -->
 
                 <!-- begin:: Warehouse -->
-                <div class="col-md-6 col-lg-6">
-                    <div class="mb-4 form-control-wrapper">
-                        <label for="type" class="form-label text-primary">Product <span class="text-danger">*</span></label>
-                        <ng-select
-                            id="type"
-                            [items]="warehouse" 
-                            bindLabel="name" 
-                            bindValue="id" 
-                            [multiple]="true"
-                            placeholder="Select Product"
-                        >
-                            <!-- [(ngModel)]="selectedCar" -->
-                        </ng-select>
-                        <ng-container *ngIf="controlHasError('required', null, null, 'typeId', null)">
-                            <div class="form-text text-danger invalid-feedback"><small> Product is required</small></div>
-                        </ng-container>
+                <ng-container *ngIf="showProductField">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="mb-4 form-control-wrapper">
+                            <label for="type" class="form-label text-primary">Product <span class="text-danger">*</span></label>
+                            <ng-select
+                                id="type"
+                                [items]="warehouse" 
+                                bindLabel="name" 
+                                bindValue="id" 
+                                [multiple]="true"
+                                placeholder="Select Product"
+                                formControlName="selectedProductsIds"
+                            >
+                                <!-- [(ngModel)]="selectedCar" -->
+                            </ng-select>
+                            <ng-container *ngIf="controlHasError('required', null, null, 'selectedProductsIds', null)">
+                                <div class="form-text text-danger invalid-feedback"><small> Product is required</small></div>
+                            </ng-container>
+                        </div>
                     </div>
-                </div>
+                </ng-container>
                 <!-- end:: Warehouse -->
 
                 <div class="col-12 text-end">

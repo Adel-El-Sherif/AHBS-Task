@@ -1,13 +1,60 @@
 <section class="basic-information">
 
+    <!-- begin:: section title  -->
     <header>
         <app-section-heading [title]="'Product Details'">
             <mat-icon icon>insert_drive_file</mat-icon>
         </app-section-heading>
     </header>
+    <!-- end:: section title  -->
 
-    <div class="basic-information__body">
-        ...
+    <div class="basic-information__body mt-5 pt-2">
+        
+        <div class="table-wrapper">
+            <table id="data-table" class="table table-fixed table-striped table-bordered table-hover table-sm">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>On-Hand</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="false">
+                        <tr>
+                            <td>Amr Mostafa</td>
+                            <td>Sr. Product Manager</td>
+                            <td>amrmostafa</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+                <tfoot class="d-noneX">
+                    <tr>
+                        <td>
+                            <app-paginator
+                            class="d-flex justify-content-between align-items-center flex-wrap"
+                            [page]="0"
+                            [page_size]="0"
+                            [isLoading]="false"
+                            [collectionSize]="5"
+                            (paginate)="paginate($event)"
+                          ></app-paginator>
+                        </td>
+                      </tr>
+                </tfoot>
+            </table>
+
+            <!-- begin:: if no data  -->
+            <ng-container>
+                <div class="no-data d-flex align-items-center flex-column justify-content-center">
+                    <img src="assets/images/product/noDataFoundGreen.svg" alt="No Data Icon">
+                    <h4 class="mt-2  mb-0 text-center">Select Warehouse and Product</h4>
+                </div>
+            </ng-container>
+            <!-- begin:: if no data  -->
+
+        </div>
+
     </div>
 
 </section>

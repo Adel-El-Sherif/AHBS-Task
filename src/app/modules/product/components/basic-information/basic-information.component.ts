@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { WarehouseType } from '../../models/warehous-types/warehous-types';
 import { Warehouse } from '../../models/warehouse/warehouse';
@@ -18,8 +18,14 @@ export class BasicInformationComponent implements OnInit {
   selectedCar: number = 0;
   warehouse: Warehouse[] = [];
   color: ThemePalette = 'primary';
+  productClassification: string = '';
   warehouseTypes: WarehouseType[] = [];
   // end:: properties ____
+
+  // begin:: booleans ____
+  showProductField: boolean = false;
+  // end:: booleans ____
+
   
   constructor(
     private _FormBuilder: FormBuilder,
@@ -31,11 +37,15 @@ export class BasicInformationComponent implements OnInit {
     this.getData();    
   }
 
-  // To init the form 
+
+  // To build the form 
   loadForm(): void {
     this.myForm = this._FormBuilder.group({
       warehouseID: [null, Validators.compose([Validators.required])],
-      typeId: [null, Validators.compose([Validators.required])]
+      typeId: [null, Validators.compose([Validators.required])],
+      showZero: [false],
+      productClassification: ['all'],
+      selectedProductsIds: []
     })
   }
 
@@ -47,24 +57,40 @@ export class BasicInformationComponent implements OnInit {
     this.getWarehouseTypesById(this.warehouseID);
   }
   
-  
+
+  // On Product Classification Change
+  onProductClassificationChange(): void {
+    let productFormControl: FormControl = this.myForm.get('selectedProductsIds');
+    productFormControl.setValue(null);
+    let prodClassValue = this.myForm.get('productClassification').value;
+    if(prodClassValue == 'specific') {
+      this.showProductField = true;
+      productFormControl.setValidators(Validators.compose([Validators.required]));
+      productFormControl.updateValueAndValidity();  
+    } else {
+      this.showProductField = false;
+      productFormControl.setValidators(null);
+      productFormControl.updateValueAndValidity();  
+    }
+  }
+
 
   // To get all data 
   getData(): void {
     this.getWarehouse();
   }
 
+
   // To get Warehouse
   getWarehouse(): void {
     this.warehouse = this._ProductService.getWarehouse();
   }
 
+  
   // To get Warehouse
   getWarehouseTypesById(id: number): void {
     this.warehouseTypes = this._ProductService.getWarehouseTypesById(id);
   }
-
-
 
 
   /**
@@ -74,7 +100,7 @@ export class BasicInformationComponent implements OnInit {
    * @param controlObjName 
    * @param controlName 
    * @param index 
-   * @returns 
+   * @returns {Boolean}
    */
   controlHasError(validation: string, controlArrName: any, controlObjName: any, controlName: string, index?: any) {
     let control;
@@ -88,5 +114,11 @@ export class BasicInformationComponent implements OnInit {
     return control.hasError(validation) && (control.dirty || control.touched);
   }
 
+
+  // On my form submit 
+  search(): void {
+    let formValue = this.myForm.value;
+    console.log(formValue);
+  }
 
 }

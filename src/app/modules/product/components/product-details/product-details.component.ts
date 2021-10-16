@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsComponent implements OnInit {
 
+  // begin:: pagination props ___
+  isLoading: boolean = false;
+  // end:: pagination props ___
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+
+  // pagination handler
+  paginate(event: any) {
+  //  ....
   }
 
 }

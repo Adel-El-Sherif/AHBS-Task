@@ -1,0 +1,33 @@
+<!-- start: Paginator -->
+<div class="d-flex flex-wrap me-3">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page"></ngb-pagination>
+</div>
+
+<div class="d-flex align-items-center">
+
+    <!-- begin: loading -->
+    <div class="d-flex align-items-center" *ngIf="isLoading">
+      <div class="me-2 text-muted">Loading...</div>
+      <div class="spinner spinner-primary me-10"></div>
+    </div>
+    <!-- end: loading -->
+  
+    <!-- begin: pageSize -->
+    <ng-select
+        class="form-control-sm p-0"
+        id="type"
+        [clearable]="false"
+        [items]="pageSizes" 
+        [(ngModel)]="page_size"
+        (change)="sizeChange(page_size)"
+        >
+    </ng-select>
+    <!-- end: pageSize -->
+
+    <!-- begin:: no item txt  -->
+    <small *ngIf="page_size == 0" class="ms-5">No Item To display</small>
+    <!-- end:: no item txt  -->
+
+</div>
+<!-- end: Paginator -->
+  

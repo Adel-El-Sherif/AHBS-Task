@@ -10,8 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SectionHeadingComponent } from './components/section-heading/section-heading.component';
 import { GlobalSearchFormComponent } from './components/global-search-form/global-search-form.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 @NgModule({
   declarations: [
+    PaginatorComponent,
     SectionHeadingComponent,
     GlobalSearchFormComponent,
   ],
@@ -34,6 +36,7 @@ import { GlobalSearchFormComponent } from './components/global-search-form/globa
     NgSelectModule,
     MatButtonModule,
     MatCheckboxModule,
+    PaginatorComponent,
     ReactiveFormsModule,
     SectionHeadingComponent,
     GlobalSearchFormComponent,

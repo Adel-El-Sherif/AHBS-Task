@@ -63,3 +63,6 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// introduced a global '$localize()' function that needs to be loaded
+import '@angular/localize/init'

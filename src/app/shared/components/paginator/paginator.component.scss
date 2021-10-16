@@ -1,0 +1,21 @@
+:host {
+    ::ng-deep {
+        .pagination {
+            // Structure Block 
+            margin-bottom: 0;
+        }
+
+        .ng-select {
+            // Structure Block 
+            min-width: 73px;
+
+            // Modifier Block 
+            transform: scaleY(.8);
+
+            .ng-value-container {
+                // Structure Block 
+                padding-right: 10px;
+            }
+        }
+    }
+}
