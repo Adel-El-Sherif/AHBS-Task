@@ -1,6 +1,19 @@
 :host {
+    
     overflow: auto;
     white-space: nowrap;
+    
+    &::-webkit-scrollbar-track {
+        height: 0 !important;
+    }
+    &::-webkit-scrollbar-thumb {
+        height: 0 !important;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
 
     ::ng-deep {
         .pagination {

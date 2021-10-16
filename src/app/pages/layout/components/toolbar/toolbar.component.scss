@@ -1,6 +1,6 @@
 .toolbar {
     // Positioning Block
-    z-index: 2;
+    z-index: 1;
     position: relative;
 }
 
@@ -18,7 +18,7 @@
     &.show {
         // Structure Block 
         display: block;
-        z-index: 1;
+        z-index: -1;
     }
  
 }
